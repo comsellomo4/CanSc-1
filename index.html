@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inspeção Mecânica</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#0B0D4D;
+color:#FFFFFF;
+display:flex;
+justify-content:center;
+}
+
+.tela{
+width:360px;
+min-height:100vh;
+padding:25px;
+padding-bottom:120px;
+animation:entrada .7s ease;
+}
+
+@keyframes entrada{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo{
+width:40px;
+}
+
+.nomeApp{
+font-size:26px;
+font-weight:bold;
+}
+
+.nomeApp span{
+color:#FF9800;
+}
+
+/* SLOGAN */
+
+.slogan{
+background:#FF9800;
+color:#0B0D4D;
+padding:10px;
+border-radius:10px;
+text-align:center;
+margin:15px 0 25px 0;
+font-weight:600;
+}
+
+/* TITULO */
+
+.titulo{
+border:2px solid #FF9800;
+border-radius:30px;
+padding:10px;
+text-align:center;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+/* PERGUNTAS */
+
+.pergunta{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;
+padding:15px;
+margin-bottom:15px;
+transition:.3s;
+}
+
+.pergunta:hover{
+background:rgba(255,255,255,0.08);
+}
+
+.pergunta p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+/* BOTÕES */
+
+.botoes{
+display:flex;
+gap:10px;
+}
+
+button{
+flex:1;
+border:2px solid #FF9800;
+background:none;
+color:#FFFFFF;
+padding:8px;
+border-radius:20px;
+font-weight:600;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+background:#FF9800;
+color:#0B0D4D;
+}
+
+/* RESPOSTA */
+
+.resposta{
+margin-top:8px;
+font-size:13px;
+opacity:0;
+transform:translateY(5px);
+transition:.35s;
+}
+
+.resposta.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* BOTÃO CONTINUAR */
+
+.continuarArea{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:320px;
+}
+
+.continuarBtn{
+width:100%;
+background:#FF9800;
+border:none;
+color:#0B0D4D;
+padding:15px;
+border-radius:30px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+.continuarBtn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(255,152,0,0.4);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="tela">
+
+<div class="header">
+<img class="logo" src="https://i.postimg.cc/BbP6W58Z/Picsart-26-03-12-20-29-22-255.png">
+<div class="nomeApp">VIAGEM <span>SEGURA</span></div>
+</div>
+
+<div class="slogan">
+SEGURANÇA • MODERNIDADE • RAPIDEZ
+</div>
+
+<div class="titulo">
+INSPEÇÃO MECÂNICA E TÉCNICA
+</div>
+
+<!-- PNEUS -->
+
+<div class="pergunta">
+<p>Pneus calibrados e sem desgaste excessivo (incluindo estepe)?</p>
+
+<div class="botoes">
+<button onclick="responder('pneu','sim')">Sim</button>
+<button onclick="responder('pneu','nao')">Não</button>
+</div>
+
+<div class="resposta" id="pneu"></div>
+</div>
+
+<!-- FREIOS -->
+
+<div class="pergunta">
+<p>Sistema de freios funcionando corretamente?</p>
+
+<div class="botoes">
+<button onclick="responder('freio','sim')">Sim</button>
+<button onclick="responder('freio','nao')">Não</button>
+</div>
+
+<div class="resposta" id="freio"></div>
+</div>
+
+<!-- FLUIDOS -->
+
+<div class="pergunta">
+<p>Níveis de óleo do motor e arrefecimento estão corretos?</p>
+
+<div class="botoes">
+<button onclick="responder('fluido','sim')">Sim</button>
+<button onclick="responder('fluido','nao')">Não</button>
+</div>
+
+<div class="resposta" id="fluido"></div>
+</div>
+
+<!-- SUSPENSÃO -->
+
+<div class="pergunta">
+<p>Suspensão e direção estão estáveis e sem ruídos?</p>
+
+<div class="botoes">
+<button onclick="responder('suspensao','sim')">Sim</button>
+<button onclick="responder('suspensao','nao')">Não</button>
+</div>
+
+<div class="resposta" id="suspensao"></div>
+</div>
+
+<!-- ILUMINAÇÃO -->
+
+<div class="pergunta">
+<p>Iluminação funcionando (faróis, setas, freio e ré)?</p>
+
+<div class="botoes">
+<button onclick="responder('luz','sim')">Sim</button>
+<button onclick="responder('luz','nao')">Não</button>
+</div>
+
+<div class="resposta" id="luz"></div>
+</div>
+
+<!-- HÍBRIDO -->
+
+<div class="pergunta">
+<p>Se for veículo híbrido/elétrico: cabos e baterias em bom estado?</p>
+
+<div class="botoes">
+<button onclick="responder('eletrico','sim')">Sim</button>
+<button onclick="responder('eletrico','nao')">Não</button>
+</div>
+
+<div class="resposta" id="eletrico"></div>
+</div>
+
+</div>
+
+<!-- BOTÃO CONTINUAR -->
+
+<div class="continuarArea">
+<button class="continuarBtn" onclick="proxima()">
+CONTINUAR →
+</button>
+</div>
+
+<script>
+
+function mostrar(id,msg){
+
+let el=document.getElementById(id)
+el.innerHTML=msg
+el.classList.add("show")
+
+}
+
+function responder(tipo,res){
+
+if(tipo==="pneu"){
+if(res==="sim")
+mostrar("pneu","✔ Ótimo! Pneus em boas condições garantem estabilidade.")
+else
+mostrar("pneu","⚠ Verifique a calibragem e desgaste antes de viajar.")
+}
+
+if(tipo==="freio"){
+if(res==="sim")
+mostrar("freio","✔ Perfeito! Sistema de freios funcionando.")
+else
+mostrar("freio","⚠ Freios são essenciais para segurança. Faça revisão.")
+}
+
+if(tipo==="fluido"){
+if(res==="sim")
+mostrar("fluido","✔ Níveis corretos garantem bom funcionamento do motor.")
+else
+mostrar("fluido","⚠ Verifique óleo e sistema de arrefecimento.")
+}
+
+if(tipo==="suspensao"){
+if(res==="sim")
+mostrar("suspensao","✔ Suspensão e direção em boas condições.")
+else
+mostrar("suspensao","⚠ Ruídos ou instabilidade indicam necessidade de manutenção.")
+}
+
+if(tipo==="luz"){
+if(res==="sim")
+mostrar("luz","✔ Sistema de iluminação funcionando corretamente.")
+else
+mostrar("luz","⚠ Verifique lâmpadas e sistema elétrico.")
+}
+
+if(tipo==="eletrico"){
+if(res==="sim")
+mostrar("eletrico","✔ Sistema elétrico de tração em bom estado.")
+else
+mostrar("eletrico","⚠ Cabos ou baterias devem ser verificados por técnico.")
+}
+
+}
+
+function proxima(){
+
+window.location.href="checklist5.html"
+
+}
+
+</script>
+
+</body>
+</html>
